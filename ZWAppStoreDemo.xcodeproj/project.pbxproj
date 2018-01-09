@@ -20,6 +20,7 @@
 		854F24C21FF5331B004FC1D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854F24C11FF5331B004FC1D1 /* Assets.xcassets */; };
 		854F24C51FF5331B004FC1D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854F24C31FF5331B004FC1D1 /* LaunchScreen.storyboard */; };
 		854F24C81FF5331B004FC1D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 854F24C71FF5331B004FC1D1 /* main.m */; };
+		85D683F92004EF0B00B50931 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D683F82004EF0B00B50931 /* Asset.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		854F24C41FF5331B004FC1D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		854F24C61FF5331B004FC1D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		854F24C71FF5331B004FC1D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		85D683F82004EF0B00B50931 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +127,17 @@
 				853B667F2003587000E44CC2 /* ZWAppStore.h */,
 				853B6680200358BE00E44CC2 /* ZWCheckVersion */,
 				853B669A2003A92300E44CC2 /* ZWActionReview */,
+				85D683F72004EECD00B50931 /* Resources */,
 			);
 			path = ZWAppStore;
+			sourceTree = "<group>";
+		};
+		85D683F72004EECD00B50931 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85D683F82004EF0B00B50931 /* Asset.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D683F92004EF0B00B50931 /* Asset.xcassets in Resources */,
 				853B6689200358BE00E44CC2 /* ZWUpdateAppView.xib in Resources */,
 				854F24C51FF5331B004FC1D1 /* LaunchScreen.storyboard in Resources */,
 				854F24C21FF5331B004FC1D1 /* Assets.xcassets in Resources */,

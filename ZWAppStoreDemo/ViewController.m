@@ -26,6 +26,7 @@
 //    [ZWCheckVersion zw_autoCheckVersion];
 }
 - (IBAction)actionShowReview:(id)sender {
+    
     [ZWActionReview instanceReview].probabilityDaliy = 1.f;
     [ZWActionReview instanceReview].maxNumDaliy = 100;
     [ZWActionReview instanceReview].maxTotalNum = 500;
