@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l29-1a-lgV"/>
+                        <viewControllerLayoutGuide type="bottom" id="chy-PZ-pRH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUn-tN-uby">
+                                <rect key="frame" x="20" y="80" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1pw-u6-Kc6"/>
+                                </constraints>
+                                <state key="normal" title="App Store自动检测更新"/>
+                                <connections>
+                                    <action selector="actionCheckVersion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F8i-J6-VXf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNx-bq-E0B">
+                                <rect key="frame" x="20" y="140" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BzV-WF-IUu"/>
+                                </constraints>
+                                <state key="normal" title="App弹出提醒评价视图"/>
+                                <connections>
+                                    <action selector="actionShowReview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ROP-Hh-AOY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJh-qT-gR5">
+                                <rect key="frame" x="20" y="200" width="335" height="30"/>
+                                <state key="normal" title="APP直接跳转App Store评价界面"/>
+                                <connections>
+                                    <action selector="actionSkipWriteReview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EsP-b5-nZJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HUn-tN-uby" secondAttribute="trailing" constant="20" id="0vY-2c-5Fk"/>
+                            <constraint firstAttribute="trailing" secondItem="hNx-bq-E0B" secondAttribute="trailing" constant="20" id="8zJ-9j-s17"/>
+                            <constraint firstItem="hNx-bq-E0B" firstAttribute="top" secondItem="HUn-tN-uby" secondAttribute="bottom" constant="20" id="EQd-0h-VSW"/>
+                            <constraint firstItem="hNx-bq-E0B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="J4F-7G-9WW"/>
+                            <constraint firstItem="HUn-tN-uby" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="RZ2-dn-riA"/>
+                            <constraint firstAttribute="trailing" secondItem="sJh-qT-gR5" secondAttribute="trailing" constant="20" id="UIm-aq-TWL"/>
+                            <constraint firstItem="HUn-tN-uby" firstAttribute="top" secondItem="l29-1a-lgV" secondAttribute="bottom" constant="60" id="WD1-C9-sAs"/>
+                            <constraint firstItem="sJh-qT-gR5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="i5E-KN-5PY"/>
+                            <constraint firstItem="sJh-qT-gR5" firstAttribute="top" secondItem="hNx-bq-E0B" secondAttribute="bottom" constant="20" id="skb-uO-6Ie"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-542" y="90"/>
+        </scene>
+    </scenes>
+</document>
