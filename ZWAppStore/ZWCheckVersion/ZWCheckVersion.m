@@ -101,11 +101,11 @@
     [currentVersions addObjectsFromArray:[APP_Version componentsSeparatedByString:@"."]];
     [appStoreVersions addObjectsFromArray:[model.version componentsSeparatedByString:@"."]];
     NSInteger difference = currentVersions.count - appStoreVersions.count;
-    if (difference > 0) {
+    if (difference < 0) {
         for (NSInteger i = 0; i < labs(difference); i++) {
             [currentVersions addObject:@"0"];
         }
-    }else if (difference < 0){
+    }else if (difference > 0){
         for (NSInteger i = 0; i < labs(difference); i++) {
             [appStoreVersions addObject:@"0"];
         }
