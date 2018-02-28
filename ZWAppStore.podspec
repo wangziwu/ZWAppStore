@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name		= 'ZWAppStore'
-	s.version	= '0.0.2'
+	s.version	= '0.0.3'
 	s.summary	= 'iOS 应用APP检测更新、提醒应用评价、前往App Store给予好评功能封装。请求评论视图出现逻辑：限制每日最多出现次数、限制每次出现概率、限制最大出现次数避免用户反感。'
 	s.homepage 	= 'https://github.com/wangziwu/ZWAppStore'
 	s.license	= 'MIT'

@@ -19,7 +19,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4r0-iu-khi">
                     <rect key="frame" x="30" y="176" width="315" height="315"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pop_new" translatesAutoresizingMaskIntoConstraints="NO" id="M6G-lX-72R">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="version" translatesAutoresizingMaskIntoConstraints="NO" id="M6G-lX-72R">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="157.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="M6G-lX-72R" secondAttribute="height" multiplier="2:1" id="O8t-sd-XNX"/>
@@ -126,6 +126,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pop_new" width="240" height="114"/>
+        <image name="version" width="240" height="114"/>
     </resources>
 </document>
