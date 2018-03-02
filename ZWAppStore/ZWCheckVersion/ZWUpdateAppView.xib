@@ -122,7 +122,7 @@
                 <outlet property="mScroll" destination="1x6-Tr-VzW" id="PHp-Rv-ifh"/>
                 <outlet property="notesLab" destination="odv-oJ-soN" id="era-h2-d6u"/>
             </connections>
-            <point key="canvasLocation" x="-2580" y="-521"/>
+            <point key="canvasLocation" x="-2813" y="-593"/>
         </view>
     </objects>
     <resources>

@@ -113,8 +113,10 @@
     for (NSInteger i = 0; i < appStoreVersions.count; i++) {
         NSInteger currNum = [currentVersions[i] integerValue];
         NSInteger appStoreNum = [appStoreVersions[i] integerValue];
-        if (appStoreNum > currNum) {
+        if (currNum > appStoreNum) {
             return YES;
+        }else if (currNum < appStoreNum) {
+            return NO;
         }
     }
     return NO;
