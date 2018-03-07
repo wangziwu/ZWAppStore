@@ -22,21 +22,23 @@
 - (IBAction)actionCheckVersion:(id)sender {
     //eg:微信
     [ZWCheckVersion zw_checkVersionItunesId:@"414478124"];
-    //推荐方法
+    [ZWCheckVersion zw_autoCheckVersionHandleView:^(ZWAppStoreModel *appModel) {
+        //需要更新版本、自定义更新视图
+    }];
+    //推荐方法、自动检测APP
 //    [ZWCheckVersion zw_autoCheckVersion];
 }
 - (IBAction)actionShowReview:(id)sender {
-    
     [ZWActionReview instanceReview].probabilityDaliy = 1.f;
-    [ZWActionReview instanceReview].maxNumDaliy = 100;
-    [ZWActionReview instanceReview].maxTotalNum = 500;
+    [ZWActionReview instanceReview].maxNumDaliy = 3;
+    [ZWActionReview instanceReview].maxTotalNum = 100;
     [[ZWActionReview instanceReview] zw_actionRequestReview:@"414478124"];
-    //推荐方法
+    //推荐方法、自动检测APP
 //    [[ZWActionReview instanceReview] zw_actionRequestReview];
 }
 - (IBAction)actionSkipWriteReview:(id)sender {
     [[ZWActionReview instanceReview] zw_skipToAppStoreReview:@"414478124"];
-    //推荐方法
+    //推荐方法、自动检测APP
 //    [[ZWActionReview instanceReview] zw_skipToAppStoreReview];
 }
 
