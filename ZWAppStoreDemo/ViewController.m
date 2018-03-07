@@ -22,9 +22,9 @@
 - (IBAction)actionCheckVersion:(id)sender {
     //eg:微信
     [ZWCheckVersion zw_checkVersionItunesId:@"414478124"];
-    [ZWCheckVersion zw_autoCheckVersionHandleView:^(ZWAppStoreModel *appModel) {
-        //需要更新版本、自定义更新视图
-    }];
+//    [ZWCheckVersion zw_autoCheckVersionHandleView:^(ZWAppStoreModel *appModel) {
+//        //需要更新版本、自定义更新视图
+//    }];
     //推荐方法、自动检测APP
 //    [ZWCheckVersion zw_autoCheckVersion];
 }
