@@ -7,7 +7,6 @@
 //
 
 #import "ZWCheckVersion.h"
-#import "ZWUpdateAppView.h"
 #define APP_InfoDict                [[NSBundle mainBundle] infoDictionary]
 //应用版本
 #define APP_Version                 [APP_InfoDict objectForKey:@"CFBundleShortVersionString"]
@@ -15,6 +14,9 @@
 #define APP_BundleId                [APP_InfoDict objectForKey:@"CFBundleIdentifier"]
 //区域编码
 #define APP_CountryCode             [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+
+#define APPStore_BundleId_URL       @"https://itunes.apple.com/lookup?bundleId=%@&country=%@"
+#define APPStore_ItunesId_URL       @"https://itunes.apple.com/lookup?id=%@&country=%@"
 
 #define AppStore_ResultCount        @"resultCount"
 #define AppStore_Results            @"results"
@@ -30,10 +32,8 @@
     [self zw_autoCheckVersionHandleView:nil];
 }
 + (void)zw_autoCheckVersionHandleView:(BlockAppStoreInfo)appInfo {
-    NSString *base = @"https://itunes.apple.com/lookup?bundleId=%@&country=%@";
-    NSString *url = [NSString stringWithFormat:base,APP_BundleId,APP_CountryCode];
     __weak typeof(self) weakSelf = self;
-    [self zw_getAppInfoByUrl:url appStore:^(ZWAppStoreModel *appModel) {
+    [self zw_getNewAppStoreInfo:^(ZWAppStoreModel *appModel) {
         if ([weakSelf zw_shouldUpdateApp:appModel]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (appInfo){
@@ -52,10 +52,8 @@
     [self zw_checkVersionItunesId:itunesId handleView:nil];
 }
 + (void)zw_checkVersionItunesId:(NSString *)itunesId handleView:(BlockAppStoreInfo)appInfo {
-    NSString *base = @"https://itunes.apple.com/lookup?id=%@&country=%@";
-    NSString *url = [NSString stringWithFormat:base,itunesId,APP_CountryCode];
     __weak typeof(self) weakSelf = self;
-    [self zw_getAppInfoByUrl:url appStore:^(ZWAppStoreModel *appModel) {
+    [self zw_getNewAppStoreInfoItunesId:itunesId appInfo:^(ZWAppStoreModel *appModel) {
         if ([weakSelf zw_shouldUpdateApp:appModel]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (appInfo){
@@ -91,6 +89,36 @@
         appInfo(model);
     }];
     [dataTask resume];
+}
+
+/**
+ *  获取前期应用在App Store的信息详情
+ *  1、自动读取当前APP的App Store信息
+ *  2、itunesId:自定义传入APP应用的iTunesId
+ */
++ (void)zw_getNewAppStoreInfo:(BlockAppStoreInfo)appInfo {
+    NSString *url = [self zw_autoTransformURLByItunesId:nil];
+    [self zw_getAppInfoByUrl:url appStore:^(ZWAppStoreModel *appModel) {
+        appInfo(appModel);
+    }];
+}
++ (void)zw_getNewAppStoreInfoItunesId:(NSString *)itunesId appInfo:(BlockAppStoreInfo)appInfo {
+    NSString *url = [self zw_autoTransformURLByItunesId:itunesId];
+    [self zw_getAppInfoByUrl:url appStore:^(ZWAppStoreModel *appModel) {
+        appInfo(appModel);
+    }];
+}
+/**
+ *  自动装换出正确请求App Store的URL
+ */
++ (NSString *)zw_autoTransformURLByItunesId:(NSString *)itunesId {
+    NSString *urlStr = @"";
+    if (itunesId) {
+        urlStr = [NSString stringWithFormat:APPStore_ItunesId_URL,itunesId,APP_CountryCode];
+    }else {
+        urlStr = [NSString stringWithFormat:APPStore_BundleId_URL,APP_BundleId,APP_CountryCode];
+    }
+    return urlStr;
 }
 /**
  *  判断是否需要更新

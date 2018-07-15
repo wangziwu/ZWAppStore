@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "ZWRequestReview.h"
 @interface ZWActionReview : NSObject
 /**
  *  请求评论视图
@@ -15,36 +16,33 @@
  */
 + (instancetype)instanceReview;
 /**
- *  请求评论视图、每次出现的概率(0~1)
- *  默认:0.1
+ *  请求应用评论弹窗
+ *  自动根据BundleId请求App sStore获取评论地址
+ *  itunesId: 指定iTunesId弹出应用评论弹框
+ */
+- (void)zw_actionRequestReview;
+- (void)zw_actionRequestReview:(NSString *)itunesId;
+/**
+ *  前往当前应用的App Store评论界面
+ *  itunesId: 指定iTunesId前往应用评论界面
+ */
+- (void)zw_skipToAppStoreReview;
+- (void)zw_skipToAppStoreReview:(NSString *)itunesId;
+/**
+ *  请求评论视图、每次请求出现的概率(0~1)
+ *  默认:0.5
+ *  配置通过配置概率改变打开应用就弹出的几率、避免用户反感。
  */
 @property (nonatomic, assign) CGFloat probabilityDaliy;
 /**
  *  请求评论视图、每日最多出现的次数
- *  默认:每天最多出现一次
+ *  默认:每天最多出现5次
  */
 @property (nonatomic, assign) NSInteger maxNumDaliy;
 /**
  *  请求评论视图、一共允许出现的次数
- *  默认:一共允许出现最多5次、避免引起用户反感
+ *  默认:一共允许出现最多20次、避免引起用户反感
  */
 @property (nonatomic, assign) NSInteger maxTotalNum;
-/**
- *  请求应用评论弹窗
- *  自动根据BundleId请求App Store获取评论地址
- */
-- (void)zw_actionRequestReview;
-/**
- *  请求应用评论弹窗
- *  自定义iTunesId
- */
-- (void)zw_actionRequestReview:(NSString *)itunesId;
-/**
- *  前往当前应用的App Store评论界面
- */
-- (void)zw_skipToAppStoreReview;
-/**
- *  前往指定itunesId应用的App Store评论界面
- */
-- (void)zw_skipToAppStoreReview:(NSString *)itunesId;
+
 @end

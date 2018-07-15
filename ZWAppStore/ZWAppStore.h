@@ -9,7 +9,5 @@
 #ifndef ZWAppStore_h
 #define ZWAppStore_h
 #import "ZWCheckVersion.h"
-#import "ZWUpdateAppView.h"
 #import "ZWActionReview.h"
-#import "ZWRequestReview.h"
 #endif /* ZWAppStore_h */

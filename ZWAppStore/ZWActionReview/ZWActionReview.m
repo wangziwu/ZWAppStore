@@ -7,13 +7,11 @@
 //
 
 #import "ZWActionReview.h"
-#import "ZWRequestReview.h"
 #import "ZWCheckVersion.h"
 //区域编码
-#define APP_CountryCode             [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
-#define APP_ActionReview            @"https://itunes.apple.com/app/id%@?action=write-review&country=%@"
 #define APP_DaliyMaxNum             @"ZWActionReview_MaxNumDaliy"
 #define APP_TotalNum                @"ZWActionReview_TotalNum"
+#define APP_WriteReview             @"action=write-review"
 static id _instances;
 @implementation ZWActionReview
 + (instancetype)instanceReview {
@@ -26,9 +24,9 @@ static id _instances;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.probabilityDaliy   = 0.1f;
-        self.maxNumDaliy        = 1;
-        self.maxTotalNum        = 5;
+        self.probabilityDaliy   = 0.5f;
+        self.maxNumDaliy        = 5;
+        self.maxTotalNum        = 20;
     }
     return self;
 }
@@ -40,9 +38,11 @@ static id _instances;
     if (![self zw_judgeAllowShowReview]) {
         return;
     }
-    [ZWCheckVersion zw_autoCheckVersionHandleView:^(ZWAppStoreModel *appModel) {
-        NSString *requestUrl = [NSString stringWithFormat:@"%@&action=write-review",appModel.trackViewUrl];
-        [ZWRequestReview zw_requestReview:requestUrl];
+    [ZWCheckVersion zw_getNewAppStoreInfo:^(ZWAppStoreModel *appModel) {
+        NSString *requestUrl = [NSString stringWithFormat:@"%@&%@",appModel.trackViewUrl,APP_WriteReview];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ZWRequestReview zw_requestReview:requestUrl];
+        });
     }];
 }
 /**
@@ -53,24 +53,34 @@ static id _instances;
     if (![self zw_judgeAllowShowReview]) {
         return;
     }
-    NSString *requestUrl = [NSString stringWithFormat:APP_ActionReview,itunesId,APP_CountryCode];
-    [ZWRequestReview zw_requestReview:requestUrl];
+    [ZWCheckVersion zw_getNewAppStoreInfoItunesId:itunesId appInfo:^(ZWAppStoreModel *appModel) {
+        NSString *requestUrl = [NSString stringWithFormat:@"%@&%@",appModel.trackViewUrl,APP_WriteReview];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ZWRequestReview zw_requestReview:requestUrl];
+        });
+    }];
 }
 /**
  *  前往当前应用的App Store评论界面
  */
 - (void)zw_skipToAppStoreReview {
-    [ZWCheckVersion zw_autoCheckVersionHandleView:^(ZWAppStoreModel *appModel) {
-        NSString *requestUrl = [NSString stringWithFormat:@"%@&action=write-review",appModel.trackViewUrl];
-        [self zw_openURL:requestUrl];
+    __weak typeof(self) weakSelf = self;
+    [ZWCheckVersion zw_getNewAppStoreInfo:^(ZWAppStoreModel *appModel) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf zw_openURL:appModel.trackViewUrl];
+        });
     }];
 }
 /**
  *  前往指定itunesId应用的App Store评论界面
  */
 - (void)zw_skipToAppStoreReview:(NSString *)itunesId {
-    NSString *requestUrl = [NSString stringWithFormat:APP_ActionReview,itunesId,APP_CountryCode];
-    [self zw_openURL:requestUrl];
+    __weak typeof(self) weakSelf = self;
+    [ZWCheckVersion zw_getNewAppStoreInfoItunesId:itunesId appInfo:^(ZWAppStoreModel *appModel) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf zw_openURL:appModel.trackViewUrl];
+        });
+    }];
 }
 - (BOOL)zw_judgeAllowShowReview {
     //1、视图出现概率
@@ -115,7 +125,8 @@ static id _instances;
     }
     return NO;
 }
-- (void)zw_openURL:(NSString *)requestUrl {
+- (void)zw_openURL:(NSString *)appInfoUrl {
+    NSString *requestUrl = [NSString stringWithFormat:@"%@&%@",appInfoUrl,APP_WriteReview];
     NSURL *url = [NSURL URLWithString:requestUrl];
     if (![[UIApplication sharedApplication] canOpenURL:url]) {
         return;

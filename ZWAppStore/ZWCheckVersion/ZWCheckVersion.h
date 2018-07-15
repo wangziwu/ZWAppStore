@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZWAppStoreModel.h"
+#import "ZWUpdateAppView.h"
 typedef void(^BlockAppStoreInfo)(ZWAppStoreModel *appModel);
 @interface ZWCheckVersion : NSObject
 /**
@@ -27,4 +28,11 @@ typedef void(^BlockAppStoreInfo)(ZWAppStoreModel *appModel);
  *  判断是否需要更新
  */
 + (BOOL)zw_shouldUpdateApp:(ZWAppStoreModel *)model;
+/**
+ *  获取前期应用在App Store的信息详情
+ *  1、自动读取当前APP的App Store信息
+ *  2、itunesId:自定义传入APP应用的iTunesId
+ */
++ (void)zw_getNewAppStoreInfo:(BlockAppStoreInfo)appInfo;
++ (void)zw_getNewAppStoreInfoItunesId:(NSString *)itunesId appInfo:(BlockAppStoreInfo)appInfo;
 @end
