@@ -29,7 +29,7 @@
 //    }];
 }
 - (IBAction)actionShowReview:(id)sender {
-    //测试、概率为1可以百分比出现
+    //测试设置概率为1可以百分比出现
     [ZWActionReview instanceReview].probabilityDaliy = 1.f;
     [[ZWActionReview instanceReview] zw_actionRequestReview:@"414478124"];
     //推荐方法、自动检测当前应用APP
